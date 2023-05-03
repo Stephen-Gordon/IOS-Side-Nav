@@ -3,6 +3,7 @@
 
 <body>
 	<h1>iOS 16-style Side Navigation</h1>
+    <h2><a href="https://ios-side-nav.web.app/">Try here</a></h2>
 	<p>A react App inspired by iOS 16. Using Framer Motion for Transitions and Animations. The App uses custom Bezier curves along with changing opacity and scale to create smooth transitions between tabs. In the Navbar, the font size and color is also being animated when changing page. The transitions and animations are implemented using <a href="https://www.framer.com/motion/">Framer Motion</a>. The UI components are built using <a href="https://mui.com/">Material UI</a>.</p>
 
 
