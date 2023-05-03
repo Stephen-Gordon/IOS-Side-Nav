@@ -1,10 +1,10 @@
-import { Drawer } from "@mui/material"
+import { Drawer, Stack } from "@mui/material"
 import { alpha } from "@mui/material"
 import { useState } from "react";
 
 
 
-import { AppBar, Grid, Typography } from "@mui/material";
+import { AppBar, Grid, Typography, Avatar } from "@mui/material";
 
 import styled from "@emotion/styled";
 
@@ -15,17 +15,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import PrimaryPage from "./PrimaryPage";
 import Background from "./Background";
+import { ArrowForwardIos, ArrowRight } from "@mui/icons-material";
+import Profile from "./Profile";
+import Bluetooth from "./Bluetooth";
 
 
-
-
-const SideDrawer = ({theme}) => {
+const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
     
 
     
     const StyledButton = styled(Button)({
         '&.MuiButtonBase-root-MuiTab-root,': {
             '&:hover, &.Mui-hovered': {
+                backgroundColor: alpha(theme.palette.background.paper, 0.5),
                 backgroundColor: theme.palette.background.paper,
             },
             '&.Mui-selected': {
@@ -35,7 +37,8 @@ const SideDrawer = ({theme}) => {
             },
             transition: 'ease-in-out 0.2s',
             width: '100%',
-            alignItems: 'start',
+            alignItems: 'center',
+            textAlign: 'left',
             textTransform: 'none',
             color: theme.palette.text.primary,
             fontSize: '20px',
@@ -45,32 +48,34 @@ const SideDrawer = ({theme}) => {
             paddingLeft: '24px',
             paddingRight: '24px',
             borderRadius: '12px',
-            
-            backgroundColor: theme.palette.background.default,
+            justifyContent: 'space-between',
+            alignContent: 'center',
+            backgroundColor: theme.palette.background.paper,
             '&:hover, &.Mui-hovered': {
+                backgroundColor: alpha(theme.palette.background.paper, 0.5),
                 transition: 'ease-in-out 0.2s',
-                backgroundColor: theme.palette.background.paper,
                 '@media (hover: none)': {
-                backgroundColor: 'transparent'
+                backgroundColor: alpha(theme.palette.background.paper, 0.5),
                 },
             },
         }
     });
     console.log(theme.transitions.easing)
-    const [mobileOpen, setMobileOpen] = useState(true);
+    
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
-    const [isVisible, setIsVisible] = useState(true);
+
         	
     const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
     const [isPrimaryVisible, setIsPrimaryVisible] = useState(false);
     const [isThemeVisible, setIsThemeVisible] = useState(false);
     const [isTypographyVisible, setIsTypographyVisible] = useState(false);
     const [isPageVisible, setPageVisible] = useState(false)
-
+    const [isProfileVisible, setIsProfileVisible] = useState(false)
+    const [isBluetoothVisible, setIsBluetoothVisible] = useState(false)
     const [renderController, setRenderController] = useState(true);
     console.log(theme.palette)
     const [size, setSize] = useState(theme.typography.h4.fontSize);
@@ -112,9 +117,9 @@ const SideDrawer = ({theme}) => {
                 }}
                 sx={{
                     
-                    display: {xs: 'block', md: 'none' },
+                    display: {xs: 'block',  },
                     justifyContent: 'center',
-                    '& .MuiDrawer-paper': { width: '100%' },
+                    '& .MuiDrawer-paper': { width: {xs: '100%', md: '900px'},    },
                     }}
                 variant="temporary"
                 open={mobileOpen}
@@ -128,7 +133,7 @@ const SideDrawer = ({theme}) => {
                     position="sticky" 
                     elevation={0}
                     sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", height: '67px'}} >
-                    <Grid sx={{position: 'absolute', width: '100%'}}>
+                    <Grid sx={{position: 'absolute', width: '100%', }}>
                     
                     {
                         isPageVisible && (
@@ -172,7 +177,8 @@ const SideDrawer = ({theme}) => {
                                 <Grid sx={{display: 'flex', alignItems: 'center', cursor: pointerBool, width: '100%'}}
                                     onClick={() => {
                                         if(isPageVisible){
-                                        setTiming(theme.transitions.easing.easeInOut)
+                                        setIsProfileVisible(false)  
+                                        setIsBluetoothVisible(false)
                                         setRenderController(true) 
                                         setIsBackgroundVisible(false)
                                         setIsPrimaryVisible(false)
@@ -217,7 +223,7 @@ const SideDrawer = ({theme}) => {
                                                         setMobileOpen(false)
                                                     }}
                                                 >
-                                                    <CloseIcon />
+                                                    <CloseIcon sx={{':hover': {color: 'primary.main'}}} />
                                                 </IconButton>
                                             )
                                         }
@@ -231,6 +237,7 @@ const SideDrawer = ({theme}) => {
                     
                     </Grid>
                 </AppBar>
+                
                 <Grid sx={{width: '100%',  display: 'flex'}} >
             
             
@@ -256,12 +263,34 @@ const SideDrawer = ({theme}) => {
                             opacity: 0.3,
                             transition: { duration: 0.2, ease: easeExit, opacity: 0.2  },
                           }}
-                        transition={{layout: { duration: 0.3, ease: easeExit,}}}
+                        transition={{layout: { duration: 0.3, ease: easeExit }}}
                     >
                        
 
-                        
-                        
+                        {/* PROFILE */}
+
+                        <Grid 
+                        onClick={() => {
+                            setIsProfileVisible(true)  
+                            setRenderController(false)
+                            handleText(theme.typography.h6.fontSize, 'Apple ID', theme.palette.primary.main)
+                            setPageVisible(true)                                
+                        }}
+                        sx={{display: 'flex', backgroundColor: 'background.paper', mb: 3, borderRadius: '12px', p:1, alignItems: 'center', cursor: 'pointer', 
+                            ":hover": {
+                            backgroundColor: alpha(theme.palette.background.paper, 0.5),
+                            transition: 'ease-in-out 0.2s',}}}>
+
+                                <Avatar sx={{ ml: 2, width: 56, height: 56 }}>S</Avatar>
+                                <Grid sx={{ml: 2}}>
+                                    <Typography variant="h6">Stephen</Typography>
+                                    <Typography variant="body2">Apple ID, iCloud+, Media & Purchases</Typography>
+                                </Grid>
+
+                                <Grid sx={{width: '100%', display: 'flex', justifyContent: 'end'}}>
+                                    <ArrowForwardIos sx={{mr: 2}} />
+                                </Grid>
+                        </Grid>
 
 
                         {/* Background */}
@@ -277,6 +306,7 @@ const SideDrawer = ({theme}) => {
                             }}
                             >
                                 Wi-Fi
+                                <ArrowForwardIos sx={{justifySelf: 'end'}}/>
                         </StyledButton>
 
 
@@ -285,13 +315,14 @@ const SideDrawer = ({theme}) => {
                             disableRipple
                             sx={{width: '100%', mt: 3}}
                             onClick={() => {
-                                setIsPrimaryVisible(true) 
+                                setIsBluetoothVisible(true) 
                                 setRenderController(false)
-                                handleText(theme.typography.h6.fontSize, 'Primary', theme.palette.primary.main)
+                                handleText(theme.typography.h6.fontSize, 'Bluetooth', theme.palette.primary.main)
                                 setPageVisible(true)                             
                             }}
                             >
-                                Primary
+                                Bluetooth
+                            <ArrowForwardIos/>
                         </StyledButton>
 
 
@@ -300,11 +331,14 @@ const SideDrawer = ({theme}) => {
                    </AnimatePresence>
                 </Grid>
                 
+
+                {/* Pages */}
               
                 <Background isBackgroundVisible={isBackgroundVisible}/>
 
                 <PrimaryPage isPrimaryVisible={isPrimaryVisible}/>
-          
+                <Profile isProfileVisible={isProfileVisible}/>
+                <Bluetooth isBluetoothVisible={isBluetoothVisible}/>
                 
                 <AnimatePresence>
                 {isThemeVisible && (

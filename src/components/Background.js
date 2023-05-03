@@ -89,11 +89,6 @@ const Background = ({isBackgroundVisible}) => {
 
 
         <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)", backgroundBlendMode: 'overlay',  height: '100%',  }} >
-                        
-       
-
-
-        
                   
 
                         <Grid sx={{ backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
@@ -153,21 +148,18 @@ const Background = ({isBackgroundVisible}) => {
 
 
                         </Grid>
-
-                        <Button disableRipple sx={{mt:3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
-                            Ask to Join Networks
-                        </Button>
-
-                        <Button disableRipple sx={{mt:3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
+                        <Grid sx={{ mt:3, backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
+                          <Button disableRipple sx={{ backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
+                              Ask to Join Networks
+                          </Button>
+                        </Grid>
+                        <Grid sx={{ mt:3, backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
+                          <Button disableRipple sx={{ backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
                             Auto-join Hotspot
-                        </Button>
-                       
+                          </Button>
+                        </Grid>
 
-                            
-                     
-                                
-                 
-       
+ 
     </Grid>
 
     </motion.div>

@@ -5,7 +5,10 @@ import SideDrawer from './components/SideDrawer';
 import {  createTheme, ThemeProvider, alpha } from '@mui/material/styles';
 
 import { useEffect, useState } from 'react';
-import { CssBaseline, Grid } from '@mui/material';
+import { AppBar, CssBaseline, Grid } from '@mui/material';
+import { ArrowBackIos } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function App() {
   
@@ -54,9 +57,9 @@ const [palette, setPalette] = useState(
 }
 )
 
-
 const theme = createTheme({
   transitions: {
+ 
     easing: {
       // This is the most common easing curve.
       easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -132,19 +135,52 @@ const theme = createTheme({
         }
       }
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'background.default'
+         
+        }
+      }
+    }
+  
   
 });
+console.log(theme.transitions.duration)
+
+const [mobileOpen, setMobileOpen] = useState(true);
 
   return (
     <ThemeProvider theme={theme}>
     <CssBaseline/>
+    
+    
     <Grid 
       container
       maxWidth="xl"
       columns={12}
       style={{ minHeight: '100vh' }} 
       sx={{backgroundColor: 'background.default'}}> 
-      <SideDrawer theme={theme}/>
+      
+      {/* Navbar & Burger Menu */}
+      <AppBar elevation={0} sx={{backgroundColor: 'background.default'}}>
+          <MenuIcon 
+            color="text.primary"
+            onClick={() => {setMobileOpen(!mobileOpen)}}
+            sx={{ m:3, ':hover': {color: 'primary.main'}}}
+          />
+      </AppBar>
+
+
+      <SideDrawer
+        sx={{ transitionTimingFunction: { enter: theme.transitions.easing.easeIn, exit: theme.transitions.easing.easeInOut, }, transitionDuration: { enter: theme.transitions.duration.standard, exit: theme.transitions.duration.standard, }}}
+        theme={theme} 
+        mobileOpen={mobileOpen} 
+        setMobileOpen={setMobileOpen}
+      />
+    
+    
+    
     </Grid>
     
     </ThemeProvider>
