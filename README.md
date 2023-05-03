@@ -3,7 +3,7 @@
 
 <body>
 	<h1>iOS 16-style Side Navigation</h1>
-	<p>This project is a demo of an iOS 16-style side navigation menu using HTML, CSS, and JavaScript. The transitions and animations are implemented using <a href="https://www.framer.com/motion/">Framer Motion</a>, a popular animation library for React. The UI components are built using <a href="https://mui.com/">Material UI</a>.</p>
+	<p>A react App inspired by iOS 16. Using Framer Motion for Transitions and Animations. The App uses custom Bezier curves along with changing opacity and scale to create smooth transitions between tabs. In the Navbar, the font size and color is also being animated when changing page. The transitions and animations are implemented using <a href="https://www.framer.com/motion/">Framer Motion</a>. The UI components are built using <a href="https://mui.com/">Material UI</a>.</p>
 
 
 <h2>Setup</h2>
@@ -20,8 +20,6 @@
 	<li><a href="https://mui.com/">Material UI</a> - A library of pre-built UI components for React</li>
 </ul>
 
-<h2>License</h2>
-<p>This project is licensed under the MIT License. See the LICENSE file for details.</p>
 
 </body>
 </html>
