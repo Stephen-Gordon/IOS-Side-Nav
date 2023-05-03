@@ -56,7 +56,7 @@ const SideDrawer = ({theme}) => {
             },
         }
     });
-
+    console.log(theme.transitions.easing)
     const [mobileOpen, setMobileOpen] = useState(true);
 
     const handleDrawerToggle = () => {
@@ -72,10 +72,11 @@ const SideDrawer = ({theme}) => {
     const [isPageVisible, setPageVisible] = useState(false)
 
     const [renderController, setRenderController] = useState(true);
-    const [size, setSize] = useState('h4');
+    console.log(theme.palette)
+    const [size, setSize] = useState(theme.typography.h4.fontSize);
     const [title, setTitle] = useState('Controller');
-    const [color, setColor] = useState('text.primary');
-
+    const [color, setColor] = useState(theme.palette.text.primary);
+    const [timing, setTiming] = useState(theme.transitions.easing.easeOut)
     const handleText = (size, title, color) => {
         setSize(size)
         setTitle(title)
@@ -126,7 +127,7 @@ const SideDrawer = ({theme}) => {
                 <AppBar 
                     position="sticky" 
                     elevation={0}
-                    sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", }} >
+                    sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", height: '67px'}} >
                     <Grid sx={{position: 'absolute', width: '100%'}}>
                     
                     {
@@ -144,7 +145,7 @@ const SideDrawer = ({theme}) => {
                             transition: { duration: 0.2, ease: easeExit },
                         }}
                         >
-                        <Typography align="center" sx={{zIndex: '1501', my:1, fontWeight: ''}}  color={"text.primary"} variant={"subtitle1"} >
+                        <Typography align="center" sx={{zIndex: '1501', my:1, fontWeight: ''}}  color={"text.primary"} variant={"h6"} >
                             {title}
                         </Typography> 
                         </motion.div>
@@ -161,7 +162,6 @@ const SideDrawer = ({theme}) => {
 
                         <motion.div
                         layout
-                    
                         transition={{layout: { duration: 0.3, ease: easeEntry,}}}
                         layoutId="text" style={{zIndex: '1500'}}>
                         
@@ -172,13 +172,14 @@ const SideDrawer = ({theme}) => {
                                 <Grid sx={{display: 'flex', alignItems: 'center', cursor: pointerBool, width: '100%'}}
                                     onClick={() => {
                                         if(isPageVisible){
+                                        setTiming(theme.transitions.easing.easeInOut)
                                         setRenderController(true) 
                                         setIsBackgroundVisible(false)
                                         setIsPrimaryVisible(false)
                                         setPageVisible(false)
                                         setIsThemeVisible(false)
                                         setIsTypographyVisible(false)
-                                        handleText('h4', 'Controller', 'text.main')
+                                        handleText(theme.typography.h4.fontSize, 'Settings', theme.palette.text.main)
                                         } 
                                     
                                         
@@ -187,16 +188,20 @@ const SideDrawer = ({theme}) => {
                                     { 
                                         isPageVisible && (
                                             <>
-                                                <Grid sx={{display: 'flex',  alignItems: 'center'}}>
+                                                <motion.div 
+                                                initial={{opacity: 0, x: 50}}
+                                                animate={{opacity: 1, x: 0}}
+                                                transition={{ duration: 0.2, ease: easeEntry,}}
+                                                style={{display: 'flex',  alignItems: 'center'}}>
                                                     <ArrowBackIosIcon sx={{my:1, ml: 3}} fontSize="xs" color="primary"/> 
-                                                </Grid>
+                                                </motion.div>
                                             </>
                                         )
                                         
                                     }
                                 
                                     <Grid sx={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
-                                        <Typography sx={{my:1, ml: marginLeft, }} color={color} variant={size}>
+                                        <Typography sx={{my:1, ml: marginLeft, transitionTimingFunction: theme.transitions.easing.easeIn, transition: 'color 0.3s, font-size 0.3s', fontSize: `${size}`, color: `${color}`}}  >
                                             Settings
                                         </Typography>
                                         
@@ -266,7 +271,7 @@ const SideDrawer = ({theme}) => {
                             onClick={() => {
                                 setIsBackgroundVisible(true)  
                                 setRenderController(false)
-                                handleText('subtitle1', 'Wi-Fi', 'primary.main')
+                                handleText(theme.typography.h6.fontSize, 'Wi-Fi', theme.palette.primary.main)
                                 setPageVisible(true)                                
                                 
                             }}
@@ -282,7 +287,7 @@ const SideDrawer = ({theme}) => {
                             onClick={() => {
                                 setIsPrimaryVisible(true) 
                                 setRenderController(false)
-                                handleText('subtitle1', 'Primary', 'primary.main')
+                                handleText(theme.typography.h6.fontSize, 'Primary', theme.palette.primary.main)
                                 setPageVisible(true)                             
                             }}
                             >

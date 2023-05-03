@@ -96,27 +96,24 @@ const Background = ({isBackgroundVisible}) => {
         
                   
 
-                        <Grid sx={{ p:3, backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
+                        <Grid sx={{ backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
                         
                             <Grid sx={{width: '100%',}}>
                                 
-                                    <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="center">
-                                    <Typography variant={"subtitle1"}   color="text.primary">
+                                  <Stack sx={{px: '32px', mt:1, py:1,}} direction="row" justifyContent="space-between" alignItems="center">
+                                    <Typography variant={"subtitle1"} color="text.primary">
                                             Wi-Fi
                                     </Typography>
                                     <IOSSwitch defaultChecked  />
-                                    </Stack>
-                               
+                                  </Stack>
+                          
                                 
-                                <Grid sx={{mb:2, mt:2, borderTop: '1px solid', borderColor: 'border',}}>
-                                </Grid>
-
-                                
-                                <Stack spacing={2} direction="row" justifyContent="space-between" alignItems="center">
-                                    <Typography variant={"subtitle1"}   color="text.primary">
-                                        Sbux Free Wi-Fi
-                                    </Typography>
-                                    <WifiIcon fontSize="small"/>
+                                <Stack direction="row" justifyContent="space-between" alignItems="center">
+                                      <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center',  mt:1, py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
+                                        Starbux Free Wi-fi
+                                        <WifiIcon fontSize="small"/>
+                                    </Button>
+                                   
                                 </Stack>
                                 
                             </Grid>
@@ -135,37 +132,33 @@ const Background = ({isBackgroundVisible}) => {
 
                         <Grid sx={{  backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
                           
-                            <Grid sx={{width: '100%',}}>
-                                <Grid sx={{mb:1, mt:3, ml:3, mb: 0}}>
-                                    
-                                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                    <Typography variant={"subtitle1"}   color="text.primary">
-                                        Sbux Free Wi-Fi
-                                    </Typography>
-                                    <WifiIcon sx={{ mr: 3}} fontSize="small"/>
+                        <Grid sx={{width: '100%',}}>
+                                
+                                <Stack sx={{px: '32px', mt:1, py:1,}} direction="row" justifyContent="space-between" alignItems="center">
+                                  <Typography variant={"subtitle1"} color="text.primary">
+                                  Another Free Wi-Fi
+                                  </Typography>
+                                  <IOSSwitch defaultChecked  />
                                 </Stack>
-                                </Grid>
-                                
-                               
+                        
+                              
+                              <Stack direction="row" justifyContent="space-between" alignItems="center">
+                                  <Button disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center',  mt:1, py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
+                                    Other...
+                                  </Button>
+                              </Stack>
+                              
+                          </Grid>
 
-                                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                    <Button sx={{width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center',  mt:2, py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
-                                        Other...
-                                    </Button>
-                                   
-                                </Stack>
 
-                                
-                                
-                            </Grid>
-                          
+
                         </Grid>
 
-                        <Button sx={{mt:3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
+                        <Button disableRipple sx={{mt:3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
                             Ask to Join Networks
                         </Button>
 
-                        <Button sx={{mt:3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
+                        <Button disableRipple sx={{mt:3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'flex-start', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
                             Auto-join Hotspot
                         </Button>
                        

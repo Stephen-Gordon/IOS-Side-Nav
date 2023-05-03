@@ -56,7 +56,20 @@ const [palette, setPalette] = useState(
 
 
 const theme = createTheme({
-
+  transitions: {
+    easing: {
+      // This is the most common easing curve.
+      easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      // Objects enter the screen at full velocity from off-screen and
+      // slowly decelerate to a resting point.
+      easeOut: 'cubic-bezier(0.8, 0.1, 0.2, 0.9)',
+      
+      // Objects leave the screen at full velocity. They do not decelerate when off-screen.
+      easeIn: 'cubic-bezier(0.71, 0.03, 0.56, 0.95)',
+      // The sharp curve is used by objects that may return to the screen at any time.
+      sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
+    },
+  },
   palette: {
       border: alpha(palette.text.primary, 0.1),
       primary: {
@@ -99,56 +112,9 @@ const theme = createTheme({
           secondary: palette.text.secondary
       }
   },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        body: {
-          transition: 'all 5s linear',
-        },
-      },
-    },
-  },
+  
+  
   components: {
-      MuiPaper: {
-        styleOverrides: {
-          root: {
-           borderColor: '#2b2b2b'
-          }
-        }
-      },
-      MuiList: {
-        styleOverrides: {
-          root: {
-            display: 'flex',
-            flexFlow: "row wrap",
-            justifyContent: 'center',
-            borderRadius: '12px',
-            maxWidth: '200px',
-          }
-        }
-      },
-      MuiTabs: {
-        styleOverrides: {
-          root: {
-            backgroundColor: 'primary.main',
-            display: 'flex',
-            justifyContent: 'space-around',
-            borderRadius: '12px',
-            width: '100%',
-          }
-        }
-      },
-      MuiOutlinedInput: {
-        styleOverrides: {
-          root: {
-            width:'50px', height:'50px', border:'0px solid', borderRadius: '12px'
-          },
-          notchedOutline:{
-            border: 0,
-            
-          },
-        }
-      },
       MuiButton: {
         styleOverrides: {
           root: {
@@ -161,7 +127,7 @@ const theme = createTheme({
             paddingBottom: '8px',
             paddingLeft: '32px',
             paddingRight: '32px',
-            borderRadius: '24px'
+            borderRadius: '12px'
           }
         }
       }
