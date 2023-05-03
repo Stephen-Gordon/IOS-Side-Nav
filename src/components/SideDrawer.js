@@ -1,24 +1,25 @@
-import { Drawer, Stack } from "@mui/material"
-import { alpha } from "@mui/material"
+//react
 import { useState } from "react";
-
-
-
+//mui
+import { Drawer } from "@mui/material"
+import { alpha } from "@mui/material"
 import { AppBar, Grid, Typography, Avatar } from "@mui/material";
-
 import styled from "@emotion/styled";
-
 import Button from '@mui/material/Button';
+
+//framer motion
 import { AnimatePresence, motion } from "framer-motion";
+
+//icons
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import PrimaryPage from "./PrimaryPage";
-import Background from "./Background";
-import { ArrowForwardIos, ArrowRight } from "@mui/icons-material";
+import { ArrowForwardIos } from "@mui/icons-material";
+
+//pages
 import Profile from "./Profile";
 import Bluetooth from "./Bluetooth";
-
+import Wifi from "./Wifi";
 
 const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
     
@@ -69,35 +70,38 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
 
 
         	
-    const [isBackgroundVisible, setIsBackgroundVisible] = useState(false);
-    const [isPrimaryVisible, setIsPrimaryVisible] = useState(false);
-    const [isThemeVisible, setIsThemeVisible] = useState(false);
-    const [isTypographyVisible, setIsTypographyVisible] = useState(false);
+    
+    //state
+    const [isWifiVisible, setIsWifiVisible] = useState(false);
+
     const [isPageVisible, setPageVisible] = useState(false)
     const [isProfileVisible, setIsProfileVisible] = useState(false)
     const [isBluetoothVisible, setIsBluetoothVisible] = useState(false)
-    const [renderController, setRenderController] = useState(true);
-    console.log(theme.palette)
+    const [isHomeVisible, setIsHomeVisible] = useState(true);
+  
     const [size, setSize] = useState(theme.typography.h4.fontSize);
     const [title, setTitle] = useState('Controller');
     const [color, setColor] = useState(theme.palette.text.primary);
-    const [timing, setTiming] = useState(theme.transitions.easing.easeOut)
+
+    
     const handleText = (size, title, color) => {
         setSize(size)
         setTitle(title)
         setColor(color)
     }
 
+
+    //curves
     let easeEntry = [0.8, 0.1, 0.2, 0.9]
     let easeExit = [0.71, 0.03, 0.56, 0.95]
 
     let marginLeft = 0;
-    if(renderController){
+    if(isHomeVisible){
         marginLeft = 3
     }
     
     let pointerBool = 'pointer';
-    if(renderController){
+    if(isHomeVisible){
         pointerBool = 'cursor'
     }
 
@@ -132,7 +136,7 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                 <AppBar 
                     position="sticky" 
                     elevation={0}
-                    sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", height: '67px'}} >
+                    sx={{zIndex: '1000', backgroundColor: alpha(theme.palette.background.default, 0), backdropFilter: "blur(64px)", }} >
                     <Grid sx={{position: 'absolute', width: '100%', }}>
                     
                     {
@@ -150,12 +154,11 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                             transition: { duration: 0.2, ease: easeExit },
                         }}
                         >
-                        <Typography align="center" sx={{zIndex: '1501', my:1, fontWeight: ''}}  color={"text.primary"} variant={"h6"} >
-                            {title}
-                        </Typography> 
+                            <Typography align="center" sx={{zIndex: '1501', my:1, fontWeight: ''}}  color={"text.primary"} variant={"h6"} >
+                                {title}
+                            </Typography> 
                         </motion.div>
                         )
-                        
                     }
                 
                     
@@ -166,9 +169,9 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                         {/* Controller */}
 
                         <motion.div
-                        layout
-                        transition={{layout: { duration: 0.3, ease: easeEntry,}}}
-                        layoutId="text" style={{zIndex: '1500'}}>
+                            layout
+                            transition={{layout: { duration: 0.3, ease: easeEntry,}}}
+                            layoutId="text" style={{zIndex: '1500'}}>
                         
 
                             <Grid sx={{display: 'flex', alignItems: 'center'}} >
@@ -177,18 +180,13 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                                 <Grid sx={{display: 'flex', alignItems: 'center', cursor: pointerBool, width: '100%'}}
                                     onClick={() => {
                                         if(isPageVisible){
+                                        setPageVisible(false)
                                         setIsProfileVisible(false)  
                                         setIsBluetoothVisible(false)
-                                        setRenderController(true) 
-                                        setIsBackgroundVisible(false)
-                                        setIsPrimaryVisible(false)
-                                        setPageVisible(false)
-                                        setIsThemeVisible(false)
-                                        setIsTypographyVisible(false)
+                                        setIsHomeVisible(true) 
+                                        setIsWifiVisible(false)
                                         handleText(theme.typography.h4.fontSize, 'Settings', theme.palette.text.main)
                                         } 
-                                    
-                                        
                                     }}
                                 >
                                     { 
@@ -212,7 +210,7 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                                         </Typography>
                                         
                                         {
-                                            renderController && (
+                                            isHomeVisible && (
                                                 <IconButton
                                                 sx={{mr:3}}
                                                     disableRipple
@@ -245,11 +243,11 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
 
                 
                 <AnimatePresence >
-                {renderController && (
+                {isHomeVisible && (
                         
                     <motion.div
                         layout
-                        key="Codn"
+                        key="buttons"
                         initial={{opacity: 0, scale: 0.8, x: -100 }}
                         animate={{
                             x: 0,
@@ -272,7 +270,7 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                         <Grid 
                         onClick={() => {
                             setIsProfileVisible(true)  
-                            setRenderController(false)
+                            setIsHomeVisible(false)
                             handleText(theme.typography.h6.fontSize, 'Apple ID', theme.palette.primary.main)
                             setPageVisible(true)                                
                         }}
@@ -293,13 +291,14 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                         </Grid>
 
 
-                        {/* Background */}
+                        {/* Wifi */}
+
                         <StyledButton 
                             sx={{width: '100%'}}
                             disableRipple
                             onClick={() => {
-                                setIsBackgroundVisible(true)  
-                                setRenderController(false)
+                                setIsWifiVisible(true)  
+                                setIsHomeVisible(false)
                                 handleText(theme.typography.h6.fontSize, 'Wi-Fi', theme.palette.primary.main)
                                 setPageVisible(true)                                
                                 
@@ -310,13 +309,14 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
                         </StyledButton>
 
 
-                        {/* Primary */}
+                        {/* Bluetooth */}
+
                         <StyledButton 
                             disableRipple
                             sx={{width: '100%', mt: 3}}
                             onClick={() => {
                                 setIsBluetoothVisible(true) 
-                                setRenderController(false)
+                                setIsHomeVisible(false)
                                 handleText(theme.typography.h6.fontSize, 'Bluetooth', theme.palette.primary.main)
                                 setPageVisible(true)                             
                             }}
@@ -334,38 +334,11 @@ const SideDrawer = ({theme, mobileOpen, setMobileOpen}) => {
 
                 {/* Pages */}
               
-                <Background isBackgroundVisible={isBackgroundVisible}/>
-
-                <PrimaryPage isPrimaryVisible={isPrimaryVisible}/>
+                <Wifi isWifiVisible={isWifiVisible}/>
                 <Profile isProfileVisible={isProfileVisible}/>
                 <Bluetooth isBluetoothVisible={isBluetoothVisible}/>
                 
-                <AnimatePresence>
-                {isThemeVisible && (
-               
-                        <motion.div 
-                            sx={{width: '100%'}}
-                            style={{width: '100%'}}
-                            initial={{ x: "100%" ,  scale: 0.8}}
-                            animate={{
-                                x: 0,
-                                scale: 1,
-                                transition: { duration: 0.3, ease: easeEntry},
-                            }}
-                            exit={{
-                                x: "100%",
-                                opacity: 0,
-                                transition: { duration: 0.2, ease: [0.1, 0.8, 0.9, 0.2], opacity: 0.2 },
-                            }}
-                            
-                        
-                        > 
-                        <p>theme accordian</p>
-                    </motion.div>
-          
-                )}
-                </AnimatePresence>
-            
+
             </Grid>
                    
               

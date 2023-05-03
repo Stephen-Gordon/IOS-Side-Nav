@@ -1,16 +1,12 @@
-
+//mui
 import { Grid, Typography, Box, Stack, Switch, Button, Avatar } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
-import Slider from '@mui/material/Slider';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
-import { AnimatePresence, motion } from "framer-motion";
-
-import { alpha } from "@mui/material";
-import WifiIcon from '@mui/icons-material/Wifi';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import styled from "@emotion/styled";
 import { ArrowForwardIos } from "@mui/icons-material";
+
+//framer
+import { AnimatePresence, motion } from "framer-motion";
+
+
 const Profile = ({isProfileVisible}) => {
 
 
@@ -66,102 +62,78 @@ const Profile = ({isProfileVisible}) => {
       }));
       
 
-
     return (
-        <AnimatePresence>
-            {isProfileVisible && (
-                    
-            <motion.div 
-                sx={{width: '100%', height: '100%'  }}
-                style={{width: '100%', }}
-                initial={{ x: "100%" ,  scale: 0.8}}
-                animate={{
-                    x: 0,
-                    scale: 1,
-                    transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
-                }}
-                exit={{
-                    x: "100%",
-                    opacity: 0,
-                    transition: { duration: 0.2, ease: [0.1, 0.8, 0.9, 0.2], opacity: 0.2 },
-                }}
-                
-            >
+          <AnimatePresence>
+          {isProfileVisible && (    
+          <motion.div 
+            sx={{width: '100%', height: '100%'  }}
+            style={{width: '100%', }}
+            initial={{ x: "100%" ,  scale: 0.8}}
+            animate={{
+                x: 0,
+                scale: 1,
+                transition: { duration: 0.3, ease: [0.8, 0.1, 0.2, 0.9]},
+            }}
+            exit={{
+                x: "100%",
+                opacity: 0,
+                transition: { duration: 0.2, ease: [0.1, 0.8, 0.9, 0.2], opacity: 0.2 },
+            }}
+          >
 
+            <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)", backgroundBlendMode: 'overlay',  height: '100%'}} >
+              <Grid sx={{width: '100%', mb:3, justifyContent: 'center', display: 'flex' }}>
+                  <Avatar sx={{ justifySelf: 'center', width: 56, height: 56 }}>S</Avatar>
+              </Grid>
+            
+              <Grid sx={{mb:3}}>
+                  <Typography textAlign={'center'} variant="h6">Stephen Gordon</Typography>
+                  <Typography textAlign={'center'} color="text.secondary" variant="subtitle1">stephengordon48@gmail.com</Typography>
+              </Grid>
+                  
 
+              <Grid sx={{ backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
+                  <Grid sx={{width: '100%',}}>
 
-        <Grid sx={{p:3, width: '100%', position: 'relative', backdropFilter: "blur(100px)", backgroundBlendMode: 'overlay',  height: '100%'}} >
-                        
-       
-                
-                        <Grid sx={{width: '100%', mb:3, justifyContent: 'center', display: 'flex' }}>
-                            <Avatar sx={{ justifySelf: 'center', width: 56, height: 56 }}>S</Avatar>
-                        </Grid>
+                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                          <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center', py:2, textTransform: 'none', borderTopLeftRadius: '12px', borderTopRightRadius: '12px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px'}} variant={"subtitle1"}  color="text.primary">
+                              Name, Phone Numbers, Email
+                              <ArrowForwardIos fontSize="small"/>
+                          </Button>
+                      </Stack>
                       
-                        <Grid sx={{mb:3}}>
-                            <Typography textAlign={'center'} variant="h6">Stephen Gordon</Typography>
-                            <Typography textAlign={'center'} color="text.secondary" variant="subtitle1">stephengordon48@gmail.com</Typography>
-                        </Grid>
-                        
-                        
-        
-                  
+                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                              <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center',  py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px'}} variant={"subtitle1"}  color="text.primary">
+                                  Password & Security
+                              <ArrowForwardIos fontSize="small"/>
+                          </Button>
+                      </Stack>
 
-                        <Grid sx={{ backgroundColor: 'background.paper', border: '1px solid', border: '0px solid', borderColor: 'border', borderRadius: '12px', width: '100%', display: 'flex', alignItems: 'center', }}>
-                            <Grid sx={{width: '100%',}}>
-                                
-                                 
-                          
-                                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                    <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center', py:2, textTransform: 'none', borderTopLeftRadius: '12px', borderTopRightRadius: '12px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px'}} variant={"subtitle1"}  color="text.primary">
-                                        Name, Phone Numbers, Email
-                                        <ArrowForwardIos fontSize="small"/>
-                                    </Button>
-                                </Stack>
-                                
-                                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                        <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center',  py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px'}} variant={"subtitle1"}  color="text.primary">
-                                            Password & Security
-                                        <ArrowForwardIos fontSize="small"/>
-                                    </Button>
-                                </Stack>
+                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                              <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center',  py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px'}} variant={"subtitle1"}  color="text.primary">
+                                  Payment & Shipping
+                              <ArrowForwardIos fontSize="small"/>
+                          </Button>
+                      </Stack>
 
-                                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                        <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center',  py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '0px', borderBottomRightRadius: '0px'}} variant={"subtitle1"}  color="text.primary">
-                                            Payment & Shipping
-                                        <ArrowForwardIos fontSize="small"/>
-                                    </Button>
-                                </Stack>
+                      <Stack direction="row" justifyContent="space-between" alignItems="center">
+                              <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center', py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
+                                  Subscriptions
+                                  <ArrowForwardIos fontSize="small"/>
+                              </Button>
+                      </Stack>
 
-                                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                                        <Button  disableRipple sx={{width: '100%', textAlign: 'left', justifyContent: 'space-between', alignContent: 'center', py:2, borderTop: '1px solid', borderColor: 'border', textTransform: 'none', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', borderBottomLeftRadius: '12px', borderBottomRightRadius: '12px'}} variant={"subtitle1"}  color="text.primary">
-                                            Subscriptions
-                                            <ArrowForwardIos fontSize="small"/>
-                                        </Button>
-                                </Stack>
-
-
-                            </Grid>
-                        </Grid>
+                  </Grid>
+              </Grid>
                  
-
-
-                
-                    
-                        <Button disableRipple sx={{mt: 3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'center', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px', color: 'error.main'}} color="error.main" variant={"subtitle1"}>
-                                Sign Out
-                        </Button>
-                  
-                            
-                     
-                                
-                 
-       
-    </Grid>
-
-    </motion.div>
-        )}
-        </AnimatePresence>
+              <Button disableRipple sx={{mt: 3, backgroundColor: 'background.paper', width: '100%', textAlign: 'left', justifyContent: 'center', alignContent: 'center', py:2, textTransform: 'none', borderRadius: '12px', color: 'error.main'}} color="error.main" variant={"subtitle1"}>
+                Sign Out
+              </Button>
+          
+            </Grid>
+          </motion.div>
+          )}
+          </AnimatePresence>
                    
     )   
 
