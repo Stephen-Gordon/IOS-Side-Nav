@@ -92,7 +92,7 @@ const App = () => {
       </Grid>
       
       <Grid item xs={12} sx={{mt: 5}}>
-        <Typography sx={{mb:5}} variant='body1' color="text.primary">Inspired by iOS 16. Using Framer Motion for Transitions and Animations. The Bezier curves below along with cahnging opacity and scale are used to create smooth transitions between tabs. In the NAvbar, the fontsize and color is also being animated when changing page.</Typography>
+        <Typography sx={{mb:5}} variant='body1' color="text.primary">Inspired by iOS 16. Using Framer Motion for Transitions and Animations. The Bezier curves below along with changing the opacity and scale create smooth transitions between tabs. In the Navbar, the font size and color is also being animated when changing page.</Typography>
       </Grid>
 
       <Grid item xs={12} sx={{mt: 5}}>
